@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import mapboxgl from 'mapbox-gl';
-import HoverPopUp from "./HoverPopUp";
-
+import ControlPanel from "./ControlPanel";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 function Districts(props) {
 
     //Assign the Mapbox token from the environment variable set in .env
@@ -12,8 +13,6 @@ function Districts(props) {
     const [lat, setLat] = useState(39);
     const [zoom, setZoom] = useState(3.5);
     const [hoveredDistrict, _setHoveredDistrict] = useState(null);
-    const [offsetX, setX] = useState(null);
-    const [offsetY, setY] = useState(null);
 
     const hoveredDistrictRef = useRef(hoveredDistrict);
 
@@ -38,12 +37,13 @@ function Districts(props) {
         map.addControl(new mapboxgl.NavigationControl());
 
         map.once("load", function () {
+
             map.on('mousemove', 'data', function (e) {
                 map.getCanvas().style.cursor = "pointer";
                 if (e.features.length > 0) {
 
                     //Set the hover to false if there is an existing district
-                    if (hoveredDistrictRef.current) {
+                    if (hoveredDistrictRef.current && hoveredDistrictRef.current.id !== e.features[0].id) {
                         map.setFeatureState(
                             { source: 'composite', sourceLayer: "data", id: hoveredDistrictRef.current.id },
                             { hover: false }
@@ -52,15 +52,12 @@ function Districts(props) {
 
                     let hoveredDistrict = e.features[0];
                     map.setFeatureState(
-                      { source: 'composite', sourceLayer: "data", id: hoveredDistrict.id },
-                    { hover: true }
+                        { source: 'composite', sourceLayer: "data", id: hoveredDistrict.id },
+                        { hover: true }
                     );
-                    
+
 
                     setHoveredDistrict(hoveredDistrict);
-                    setX(e.point.x);
-                    setY(e.point.y)
-
                 }
 
             });
@@ -69,12 +66,12 @@ function Districts(props) {
             // previously hovered feature.
             map.on('mouseleave', 'data', function () {
                 if (hoveredDistrictRef.current) {
-                    
+
                     map.setFeatureState(
                         { source: 'composite', sourceLayer: "data", id: hoveredDistrictRef.current.id },
-                            { hover: false }
+                        { hover: false }
                     );
-                    
+
                 }
                 setHoveredDistrict(null);
             });
@@ -87,20 +84,19 @@ function Districts(props) {
                 setZoom(map.getZoom().toFixed(2));
             });
 
+            map.resize();
         });
 
     }, []);
 
     return (
-
-        <div id="districtDetailMap" className="map">
-            <div style={{ height: "100%" }} ref={mapContainer}>
-                {hoveredDistrict &&
-                    <HoverPopUp hoveredFeature={hoveredDistrict} x={offsetX} y={offsetY} />
-                }
+        <div className="map-wrapper">
+            <div id="districtDetailMap" className="district-map">
+                <div style={{ height: "100%" }} ref={mapContainer}>
+                    <ControlPanel hoveredDistrict={hoveredDistrict} />
+                </div>
             </div>
         </div>
-
     );
 }
 
