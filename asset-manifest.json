@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/us-congressional-districts/static/css/main.5c2b0d36.chunk.css",
+    "main.js": "/us-congressional-districts/static/js/main.2f8cffee.chunk.js",
+    "main.js.map": "/us-congressional-districts/static/js/main.2f8cffee.chunk.js.map",
+    "runtime-main.js": "/us-congressional-districts/static/js/runtime-main.aa0367eb.js",
+    "runtime-main.js.map": "/us-congressional-districts/static/js/runtime-main.aa0367eb.js.map",
+    "static/css/2.b4a16772.chunk.css": "/us-congressional-districts/static/css/2.b4a16772.chunk.css",
+    "static/js/2.071abe4e.chunk.js": "/us-congressional-districts/static/js/2.071abe4e.chunk.js",
+    "static/js/2.071abe4e.chunk.js.map": "/us-congressional-districts/static/js/2.071abe4e.chunk.js.map",
+    "index.html": "/us-congressional-districts/index.html",
+    "precache-manifest.6b39135a888f92835dba0e50ea562c1c.js": "/us-congressional-districts/precache-manifest.6b39135a888f92835dba0e50ea562c1c.js",
+    "service-worker.js": "/us-congressional-districts/service-worker.js",
+    "static/css/2.b4a16772.chunk.css.map": "/us-congressional-districts/static/css/2.b4a16772.chunk.css.map",
+    "static/css/main.5c2b0d36.chunk.css.map": "/us-congressional-districts/static/css/main.5c2b0d36.chunk.css.map",
+    "static/js/2.071abe4e.chunk.js.LICENSE.txt": "/us-congressional-districts/static/js/2.071abe4e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa0367eb.js",
+    "static/css/2.b4a16772.chunk.css",
+    "static/js/2.071abe4e.chunk.js",
+    "static/css/main.5c2b0d36.chunk.css",
+    "static/js/main.2f8cffee.chunk.js"
+  ]
+}
