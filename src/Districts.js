@@ -38,21 +38,21 @@ function Districts(props) {
 
         map.once("load", function () {
 
-            map.on('mousemove', 'data', function (e) {
+            map.on('mousemove', 'districts', function (e) {
                 map.getCanvas().style.cursor = "pointer";
                 if (e.features.length > 0) {
 
                     //Set the hover to false if there is an existing district
                     if (hoveredDistrictRef.current && hoveredDistrictRef.current.id !== e.features[0].id) {
                         map.setFeatureState(
-                            { source: 'composite', sourceLayer: "data", id: hoveredDistrictRef.current.id },
+                            { source: 'composite', sourceLayer: "districts", id: hoveredDistrictRef.current.id },
                             { hover: false }
                         );
                     }
 
                     let hoveredDistrict = e.features[0];
                     map.setFeatureState(
-                        { source: 'composite', sourceLayer: "data", id: hoveredDistrict.id },
+                        { source: 'composite', sourceLayer: "districts", id: hoveredDistrict.id },
                         { hover: true }
                     );
 
@@ -64,11 +64,11 @@ function Districts(props) {
 
             // When the mouse leaves the state-fill layer, update the feature state of the
             // previously hovered feature.
-            map.on('mouseleave', 'data', function () {
+            map.on('mouseleave', 'districts', function () {
                 if (hoveredDistrictRef.current) {
 
                     map.setFeatureState(
-                        { source: 'composite', sourceLayer: "data", id: hoveredDistrictRef.current.id },
+                        { source: 'composite', sourceLayer: "districts", id: hoveredDistrictRef.current.id },
                         { hover: false }
                     );
 

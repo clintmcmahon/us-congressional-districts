@@ -25,10 +25,10 @@ def getState(fip):
 
 if __name__ == '__main__':
 
-    with open('../src/data/states.json') as states_file:
+    with open('../data/states.json') as states_file:
         states_data = json.load(states_file)
 
-    with open('../src/data/us_representatives.json') as reps_file:
+    with open('../data/us_representatives.json') as reps_file:
         reps_data = json.load(reps_file)
 
     districts_data = []
@@ -39,7 +39,7 @@ if __name__ == '__main__':
         "features": []
     }
 
-    with open('../src/data/congressional_districts.geojson') as districts_file:
+    with open('../data/congressional_districts.geojson') as districts_file:
         districts_data = json.load(districts_file)
 
     featureId = 1
@@ -65,5 +65,5 @@ if __name__ == '__main__':
 
             new_districts_data["features"].append(feature)
             featureId = featureId + 1
-    with open('data.geojson', 'w') as outfile:
+    with open('../data/data.geojson', 'w') as outfile:
         json.dump(new_districts_data, outfile, indent=2)
